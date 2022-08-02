@@ -1,4 +1,5 @@
 scikit-learn==1.1.1
 streamlit==1.11.1
 matplotlib==3.5.2
+seaborn==0.11.2
 

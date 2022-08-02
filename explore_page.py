@@ -85,6 +85,11 @@ def show_explore_page():
     plt.title('GRE Scores vs CGPA seperated by statement of purpose ratings')
     st.pyplot(plt.gcf())
     
-
+    colormap = sns.diverging_palette(220, 10, as_cmap = True)
+    corr = df.corr()
+    fig = plt.figure(figsize=(6,6))
+    plt.title('Correlation matrix')
+    plot = sns.heatmap(corr, annot=True, cmap = colormap, fmt='.2f', linewidths=0.5)
+    st.pyplot(plt.gcf())
 
 

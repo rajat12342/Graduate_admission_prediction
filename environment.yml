@@ -5,6 +5,7 @@ dependencies:
   - pandas
   - matplotlib
   - seaborn
+  - pip
   - pip:
     - sklearn
     - pickle

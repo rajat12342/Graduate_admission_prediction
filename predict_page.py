@@ -1,8 +1,8 @@
 import streamlit as st
-import pandas
+
 import numpy as np
 import pickle
-from sklearn.preprocessing import StandardScaler
+
 
 def loadLinear_model():
     with open('linearModel1.pkl', 'rb') as file:

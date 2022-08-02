@@ -31,7 +31,7 @@ logisticReg_loaded = data1['model']
 
 
 def show_predict_page():
-    st.title('Graduate school admission prediction')
+    st.title('UCLA Graduate school admission prediction')
 
     st.write("""### Enter information to predict admission chances""")
 

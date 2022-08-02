@@ -12,7 +12,7 @@ def load_data():
 df = load_data()
 
 def show_explore_page():
-    st.title("Explore the Graduate Admissions dataset")
+    st.title("Explore the UCLA Graduate Admissions dataset")
 
     fig = plt.figure(figsize=(7,7))
 

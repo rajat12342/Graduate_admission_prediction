@@ -1,4 +1,0 @@
-pip install streamlit
-pip install numpy
-pip install pickle
-pip install sklearn

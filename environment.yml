@@ -1,0 +1,5 @@
+channles:
+  - conda-forge
+dependencies:
+  - numpy==1.18.1
+  - scikit-learn==0.22.2.post1

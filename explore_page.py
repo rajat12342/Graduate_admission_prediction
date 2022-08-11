@@ -1,7 +1,9 @@
 import streamlit as st
-import pandas
+import pandas 
 import matplotlib.pyplot as plt
 import seaborn as sns
+from predict_page import loadLinear_model
+from predict_page import loadLogistic_model
 
 #This makes sure the data is only loaded once and stored
 @st.cache
@@ -11,8 +13,50 @@ def load_data():
 
 df = load_data()
 
+linearModel = loadLinear_model()
+logisticModel = loadLogistic_model()
+
+
 def show_explore_page():
     st.title("Explore the UCLA Graduate Admissions dataset")
+
+    fig = plt.figure()
+
+    importance = linearModel['model'].coef_
+    Scores = []
+    List = ['GRE Score', 'TOEFL Score', 'University Rating', 'SOP', 'LOR', 'CGPA', 'Research']
+    for i,v in enumerate(importance):
+        Scores.append(v)
+    
+    ScoresS = pandas.Series(Scores, name='Importance')
+    ListS = pandas.Series(List, name='Features')
+    Features_df_lin = pandas.concat([ScoresS, ListS], axis=1)
+
+    plt.barh([1,2,3,4,5,6,7], Features_df_lin['Importance'])
+    plt.yticks([1,2,3,4,5,6,7], Features_df_lin['Features'])
+    plt.title('Linear Regression Feature Coefficients')
+    plt.xlabel('Coefficients')
+    st.pyplot(fig)
+
+    fig = plt.figure()
+
+    importance_log = logisticModel['model'].coef_[0]
+
+    Scores_log = []
+
+    for i,v in enumerate(importance_log):
+        Scores_log.append(v)
+    
+    Scores_logS = pandas.Series(Scores_log, name='Importance')
+
+    Features_df_log = pandas.concat([Scores_logS, ListS], axis=1)
+
+    plt.barh([1,2,3,4,5,6,7], Features_df_log['Importance'])
+    plt.yticks([1,2,3,4,5,6,7], Features_df_log['Features'])
+    plt.xlabel('Coefficients')
+
+    plt.title('Logistic Regression Feature Coefficients')    
+    st.pyplot(fig)
 
     fig = plt.figure(figsize=(7,7))
 

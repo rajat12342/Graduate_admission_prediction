@@ -22,6 +22,9 @@ def show_explore_page():
 
     fig = plt.figure()
 
+    #Regression coefficients represent the mean change in the dependent variable for 1 unit change in an independent variable while holding 
+    #all other variables constant
+
     importance = linearModel['model'].coef_
     Scores = []
     List = ['GRE Score', 'TOEFL Score', 'University Rating', 'SOP', 'LOR', 'CGPA', 'Research']

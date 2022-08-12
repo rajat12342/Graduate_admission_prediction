@@ -26,7 +26,7 @@ import pandas as pd
 
 import seaborn as sns
 from tensorflow import keras
-from tensorflow.keras import layers
+#from tensorflow.keras import layers
 from tensorflow.python.keras.layers import Dense
 import tensorflow
 from matplotlib import pyplot as plt
@@ -35,7 +35,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
-from tensorflow.keras import callbacks
+#from tensorflow.keras import callbacks
 
 import pickle
 

@@ -86,3 +86,13 @@ def show_predict_page():
             st.subheader('Outcome predicted: Admitted')
         else:
             st.subheader('Outcome predicted: Rejected')
+    
+    details = st.button('Show Model Statistics')
+    if details:
+        st.write('LINEAR REGRESSION: ')
+        st.write('RMSE(average of 6 runs): 0.0667')
+        st.write('R Squared(average of 6 runs): 0.781')
+        st.write('\n')
+        st.write('LOGISTIC REGRESSION: ')
+        st.write('Accuracy(average of 6 runs): 0.873')
+        st.write('Overall, both models seem to have good predictive power.')

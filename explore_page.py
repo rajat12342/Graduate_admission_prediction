@@ -35,6 +35,8 @@ def show_explore_page():
     ListS = pandas.Series(List, name='Features')
     Features_df_lin = pandas.concat([ScoresS, ListS], axis=1)
 
+    Features_df_lin = Features_df_lin.sort_values(by=['Importance'], ascending=True)
+
     plt.barh([1,2,3,4,5,6,7], Features_df_lin['Importance'])
     plt.yticks([1,2,3,4,5,6,7], Features_df_lin['Features'])
     plt.title('Linear Regression Feature Coefficients')
@@ -53,6 +55,8 @@ def show_explore_page():
     Scores_logS = pandas.Series(Scores_log, name='Importance')
 
     Features_df_log = pandas.concat([Scores_logS, ListS], axis=1)
+
+    Features_df_log = Features_df_log.sort_values(by=['Importance'], ascending=True)
 
     plt.barh([1,2,3,4,5,6,7], Features_df_log['Importance'])
     plt.yticks([1,2,3,4,5,6,7], Features_df_log['Features'])

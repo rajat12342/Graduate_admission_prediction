@@ -2,9 +2,10 @@ import streamlit as st
 import pandas 
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 from predict_page import loadLinear_model
 from predict_page import loadLogistic_model
-
+from sklearn.feature_selection import mutual_info_regression
 #This makes sure the data is only loaded once and stored
 @st.cache
 def load_data():
@@ -21,10 +22,35 @@ def show_explore_page():
     st.title("Explore the UCLA Graduate Admissions dataset")
 
     fig = plt.figure()
+    data1 = df.copy()
+
+    X = data1.drop(['Chance_of_Admit'], axis=1)
+    y = data1['Chance_of_Admit']
+
+    discrete_features = X.dtypes == int
+
+    def make_mi_scores(X, y, discrete_features):
+        mi_scores = mutual_info_regression(X, y, discrete_features=discrete_features)
+        mi_scores = pandas.Series(mi_scores, name="MI Scores", index=X.columns)
+        mi_scores = mi_scores.sort_values()
+        return mi_scores
+
+    mi_scores = make_mi_scores(X, y, discrete_features)
+    
+
+    scores = mi_scores.sort_values()
+    width = np.arange(len(scores))
+
+    ticks = list(scores.index)
+    plt.barh(width, scores)
+    plt.yticks(width, ticks)
+    plt.title("Mutual Information Scores")
+    st.pyplot(fig)
+
 
     #Regression coefficients represent the mean change in the dependent variable for 1 unit change in an independent variable while holding 
     #all other variables constant
-
+    fig = plt.figure()
     importance = linearModel['model'].coef_
     Scores = []
     List = ['GRE Score', 'TOEFL Score', 'University Rating', 'SOP', 'LOR', 'CGPA', 'Research']

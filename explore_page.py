@@ -24,8 +24,8 @@ def show_explore_page():
     fig = plt.figure()
     data1 = df.copy()
 
-    X = data1.drop(['Chance_of_Admit'], axis=1)
-    y = data1['Chance_of_Admit']
+    X = data1.drop(['Chance of Admit '], axis=1)
+    y = data1['Chance of Admit ']
 
     discrete_features = X.dtypes == int
 
@@ -44,6 +44,7 @@ def show_explore_page():
     ticks = list(scores.index)
     plt.barh(width, scores)
     plt.yticks(width, ticks)
+    plt.xlabel('Score')
     plt.title("Mutual Information Scores")
     st.pyplot(fig)
 
